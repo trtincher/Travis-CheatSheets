@@ -197,3 +197,5 @@ Todo.create(title: "Don't mess with Mister In-Between", completed: false, user_i
 - Now run rails c
 - In the console type: require 'hirb'
 - In the console type: Hirb.enable
+- or
+- put require 'hirb'; Hirb.enable in your ~/.irbrc
