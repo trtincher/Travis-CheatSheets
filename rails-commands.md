@@ -134,6 +134,22 @@ class Todo <  ApplicaitonRecord
 end
 ```
 #### Adding Relationships to models
+- schema folder should look like this:
+```rb
+  enable_extension "plpgsql"
+
+  create_table "products", force: :cascade do |t|
+    t.string "title"
+    t.integer "price"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "content"
+    t.integer "product_id"
+  end
+end
+```
 - Here Todo Model contains user_id column
 ```rb
 IN THE USER MODEL, SPECIFY THE MODEL’S RELATION TO THE Todo MODE
