@@ -118,6 +118,12 @@ rails dbconsole
 - see psql commands 
 
 ### Create Models
+- The model generator made both the book.rb file and the table migration file:
+```rb
+rails generate model name_of_file
+```
+- then fill out your migration and run migration
+##### or
 - once you have a schema
 - make file with singular name of schema in app/modles
 - example => todo.rb
@@ -159,6 +165,9 @@ Todo.save
     - saves new Todo
 Todo.create(title: "Something", completed: false)
     - creates and saves
+Todo.update()
+Todo.update_all()
+Todo.destroy
 ```
 - Related Items
 ```rb
@@ -188,6 +197,8 @@ Todo.create(title: "Latch on to the Affirmative", completed: false, user_id: 2)
 Todo.create(title: "Don't mess with Mister In-Between", completed: false, user_id: 3)
 ```
 - Run Seed File `rails db:seed`
+
+Can drope databases and re-seed with : `rails db:reset`
 
 
 #### Side Note
