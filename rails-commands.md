@@ -208,3 +208,5 @@ Can drope databases and re-seed with : `rails db:reset`
 - Now run rails c
 - In the console type: require 'hirb'
 - In the console type: Hirb.enable
+- or
+- put require 'hirb'; Hirb.enable in your ~/.irbrc
