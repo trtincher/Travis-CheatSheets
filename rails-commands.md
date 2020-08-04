@@ -16,6 +16,28 @@ Created database 'new_app_api_development'
 Created Database 'new_app_api_test'
 ```
 
+### Scaffolding
+Rails is so developer friendly that it even has a command to help scaffold an app with following:
+
+- Controller
+- Model
+- A Migration
+- Routes
+- Views for every standard controller action (index, edit, - show, new)
+
+Let's scaffold Locations with lat and lng as decimals, and also a name column.
+
+```
+$ rails g scaffold location lat:decimal lng:decimal name
+```
+
+This has added boilerplate files and code to
+
+- db/migrate
+- app/models
+- config/routes.rb
+- app/controllers
+
 ### Generating Migrations
 - to generate a migration
 ```rb
@@ -215,6 +237,50 @@ Todo.create(title: "Don't mess with Mister In-Between", completed: false, user_i
 - Run Seed File `rails db:seed`
 
 Can drope databases and re-seed with : `rails db:reset`
+
+### Routes
+We can format our data this way with the .to_json method that takes a hash as an argument that we can use to include the temperatures.
+```rb
+def index
+  @locations = location.all
+
+  render json: @locations.to_json(inclide: :temperatures)
+end
+
+
+def show
+  render json: @location.to_json(include: :temperatures)
+end
+```
+
+#### Nested routes
+We will want to nest our create action inside the locations routes.
+```rb
+Rails.application.routes.draw do
+  resources :temperatures, only: [:index]
+  resources :locations, only: [:index, :show] do
+    resources :temperatures, only: [:create]
+  end
+end
+```
+When we rails routes, we will get this:
+```
+               Prefix Verb URI Pattern                                    Controller#Action
+         temperatures GET  /temperatures(.:format)                        temperatures#index
+location_temperatures POST /locations/:location_id/temperatures(.:format) temperatures#create
+            locations GET  /locations(.:format)                           locations#index
+             location GET  /locations/:id(.:format)                       locations#show
+```
+Our create action URI has changed to reflect that we are creating a Temperature only in relation to a Location. The param we received is location_id
+
+We will want to add the incoming location_id to our new temperature record:
+```rb
+@temperature.location_id = params[:location_id]
+```
+Create a new Temperature using temperature_params and on the new temperature, set the id column to the location_id from the url
+
+Also remove location: @temperature, it's a pain that will try to force a redirect and will give us errors in Postman if it stays.
+
 
 
 #### Side Note
