@@ -14,6 +14,9 @@ killall -9 rails
 
 ```
 
+### Set up Awesome Print for Terminal
+[Awesome Print Docs](https://gauravsohoni.wordpress.com/2017/07/26/set-up-awesome_print-as-default-rails-console-formatter/)
+
 ### Rails Start-Up Commands
 - Make new rails app_api
 ```rb
