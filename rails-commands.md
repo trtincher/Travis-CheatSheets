@@ -1,5 +1,19 @@
 # Rails Commands
 
+### Kill Rails Server
+```
+#In your terminal find PID with :
+ lsof -wni tcp:3000
+
+ #then kill the process with
+ kill -9 PID
+
+# or to kill all servers with rails in the name
+
+killall -9 rails
+
+```
+
 ### Rails Start-Up Commands
 - Make new rails app_api
 ```rb
