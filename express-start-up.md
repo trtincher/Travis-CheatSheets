@@ -22,11 +22,11 @@
     ```
 10. in package.json, scripts
     ```
-    "dev"="nodemon server.js"
+    "dev":"nodemon server.js"
     ```
 11. in server.js
     ```
-    require('dotenv).config
+    require('dotenv').config
     const express = require('express')
     const app = express()
     ```
