@@ -8,7 +8,7 @@ cd playlists_songs_app_api
 rails db:create
 
 #thing tables
-rails g scaffold playlist title 
+rails g scaffold playlist title
 rails g scaffold song title artist duration:integer
 #relation table
 rails g scaffold roster playlist:references song:references plays:integer fav:boolean
@@ -24,7 +24,7 @@ class Playlist < ApplicationRecord
 end
 
 class Song < ApplicationRecord
-    belongs_to :rosters
+    has_many :rosters
 
     has_many :playlists, through: :rosters
 end
